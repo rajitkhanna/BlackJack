@@ -55,8 +55,18 @@ def deal_cards():
     if player_cards[0][0] == "ACE" and player_cards[1][0] == "ACE": # Both cards are ACES
         print("You have the {0} of {1} and the {0} of {2}.".
         format(player_cards[0][0], player_cards[0][1], player_cards[1][1]))
-        print("Your two possible sums are 2 and 12.", end= " ")
-        player_total = int(input("Please enter which you would like: "))
+        validInput = False
+        while not validInput:
+            print("Your two possible sums are 2 and 12.", end= " ")
+            answer = int(input("Please enter which you would like: "))
+            if answer == 2:
+                player_total = answer
+                validInput = True
+            elif answer == 12:
+                player_total = answer
+                validInput = True
+            else:
+                print("Please enter a valid input.")
 
     elif player_cards[0][0] == "ACE": # The first card is an ACE
         if check_total(Cards[player_cards[1][0]] + 11):
@@ -66,21 +76,45 @@ def deal_cards():
         else:
             print("You have the {0} of {1} and the {2} of {3}.".
             format(player_cards[0][0], player_cards[0][1], player_cards[1][0], player_cards[1][1]))
-            print("Your two possible sums are {0} and {1}.".
-            format(Cards[player_cards[1][0]] + 1, Cards[player_cards[1][0] + 11]))
-            player_total = int(input("Please enter which one you would like: "))
+
+            validInput = False
+            while not validInput:
+                print("Your two possible sums are {0} and {1}.".
+                format(Cards[player_cards[1][0]] + 1, Cards[player_cards[1][0]] + 11))
+                answer = int(input("Please enter which one you would like: "))
+                if answer == Cards[player_cards[1][0]] + 1:
+                    player_total = Cards[player_cards[1][0]] + 1
+                    validInput == True
+                elif answer == Cards[player_cards[1][0]] + 11:
+                    player_total = Cards[player_cards[1][0]] + 11
+                    validInput = True
+                else:
+                    print("Please enter a valid input.")
     
     elif player_cards[1][0] == "ACE": # The second card is an ACE
         if check_total(Cards[player_cards[0][1]] + 11):
             player_total = 1 + Cards[player_cards[0][1]]
             print("You have {0} with the {1} of {2} and the {3} of {4}.".
         format(player_total, player_cards[0][0], player_cards[0][1], player_cards[1][0], player_cards[1][1]))
+
         else:
             print("You have the {0} of {1} and the {2} of {3}.".
             format(player_cards[0][0], player_cards[0][1], player_cards[1][0], player_cards[1][1]))
-            print("Your two possible sums are {0} and {1}.".
-            format(Cards[player_cards[0][1]] + 1, Cards[player_cards[0][1] + 11]))
-            player_total = int(input("Please enter which one you would like: "))
+
+            validInput = False
+            while not validInput:
+                print("Your two possible sums are {0} and {1}.".
+            format(Cards[player_cards[0][1]] + 1, Cards[player_cards[0][1]] + 11))
+                answer = int(input("Please enter which one you would like: "))
+                if answer == Cards[player_cards[0][1]] + 1:
+                    player_total = Cards[player_cards[0][1]] + 1
+                    validInput == True
+                elif answer == Cards[player_cards[0][1]] + 11:
+                    player_total = Cards[player_cards[0][1]] + 11
+                    validInput = True
+                else:
+                    print("Please enter a valid input.")
+            
     
     else: # Neither cards are ACES - majority of instances
         player_total = Cards[player_cards[0][0]] + Cards[player_cards[1][0]]
@@ -116,34 +150,36 @@ def dealer_action(mask, dealer_cards, player_total):
 def player_action(mask, player_cards, player_total):
     answer = ""
     while not check_total(player_total) and player_total != 21:
-        answer = input("Would you like to hit? (y/n) ")
-        if answer == 'y':
-            player_cards.append(deck_of_cards[mask[0]])
-            # If dealer receives an ACE
-            if deck_of_cards[mask[0]][0] == "ACE":
-                if check_total(player_total + 11):
-                    player_total += 1
+        validInput = False
+        while not validInput:
+            answer = input("Would you like to hit? (y/n) ")
+            if answer == 'y':
+                player_cards.append(deck_of_cards[mask[0]])
+                # If dealer receives an ACE
+                if deck_of_cards[mask[0]][0] == "ACE":
+                    if check_total(player_total + 11):
+                        player_total += 1
+                    else:
+                        player_total += 11
                 else:
-                    player_total += 11
-            else:
-                player_total += Cards[deck_of_cards[mask[0]][0]]
-            mask.pop(0)
+                    player_total += Cards[deck_of_cards[mask[0]][0]]
+                mask.pop(0)
+                validInput = True
 
-            # Display player's cards
-            for j in range(len(player_cards)):
-                if j == 0:
-                    print("You now have {0} with the {1} of {2}".format(player_total, player_cards[j][0], player_cards[j][1]), end = "")
-                elif j == len(player_cards) - 1:
-                    print(" and the {0} of {1}. ".format(player_cards[j][0], player_cards[j][1]))
-                else:
-                    print(", the {0} of {1},".format(player_cards[j][0], player_cards[j][1]), end = "")
-            
-        elif answer == 'n':
-            return player_total
-        else:
-            myerror = ValueError("{0} is not a valid answer.".format(answer))
-            play = False
-            raise myerror
+                # Display player's cards
+                for j in range(len(player_cards)):
+                    if j == 0:
+                        print("You now have {0} with the {1} of {2}".format(player_total, player_cards[j][0], player_cards[j][1]), end = "")
+                    elif j == len(player_cards) - 1:
+                        print(" and the {0} of {1}. ".format(player_cards[j][0], player_cards[j][1]))
+                    else:
+                        print(", the {0} of {1},".format(player_cards[j][0], player_cards[j][1]), end = "")
+                
+            elif answer == 'n':
+                validInput = True
+                return player_total
+            else:
+                print("Please enter a valid input.")
 
     return player_total
 
@@ -209,14 +245,16 @@ if __name__ == '__main__':
                 elif player_total > dealer_total:
                     print("You win!")
 
-        answer = input("Would you like to play again? (y/n) ")
-        if answer == 'n':
-            print("Thank you for playing!")
-            play = False
-        elif answer == 'y':
-            print("Let's see if we can't get you that chicken dinner :)!")
-        else:
-            myerror = ValueError("{0} is not a valid answer.".format(answer))
-            play = False
-            raise myerror
+        validInput = False
+        while not validInput:
+            answer = input("Would you like to play again? (y/n) ")
+            if answer == 'n':
+                print("Thank you for playing!")
+                validInput = True
+                play = False
+            elif answer == 'y':
+                print("Let's see if we can't get you that chicken dinner :)!")
+                validInput = True
+            else:
+                print("Please enter a valid answer.")
 
