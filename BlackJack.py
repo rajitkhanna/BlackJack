@@ -256,5 +256,5 @@ if __name__ == '__main__':
                 print("Let's see if we can't get you that chicken dinner :)!")
                 validInput = True
             else:
-                print("Please enter a valid answer.")
+                print("Please enter a valid input.")
 
