@@ -15,5 +15,7 @@ The edge case that was most problematic to account for was the fact that aces ha
 
 The functions dealer_action and player_action drive the gameplay. dealer_action determines the dealer's score, and player_action allows the player to hit - build up their point total - to reach 21. 
 
+To terms of gameplay, I  followed the BlackJack rules from the website https://wizardofodds.com/games/blackjack/basics/. In the beginning, the dealer and the player are each dealt two cards. The dealer reveals  one of these cards to the player. The player can then decide if they choose to hit or stand. If they choose to hit, they are dealt a new card. If the sum of this card with their previous point total is greater than 21, they go bust and lose. If this is not the case, then the player can hit as many times as they want or until they go bust. When the player chooses to stand, it is the dealer's turn to act. The dealer will always hit if their point total is 16 or less. If the dealer goes bust (their point total is greater than 21), the player wins. If neither the player nor the dealer goes bust, then whoever is closest to 21 wins. If the player and the dealer tie, it goes to a new game. 
+
 I hope you enjoy playing!
 
