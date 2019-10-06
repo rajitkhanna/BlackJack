@@ -1,11 +1,13 @@
 # BlackJack
 Console-based BlackJack Card Game in Python. Oodles of Fun.
 
-Run the file in your console with the command
+If you already have python3 installed, run the file in your console with the command
 
 python3 BlackJack.py
 
 to experience this classic card game!
+
+You can check what version of python you have installed by simply typing python into your command prompt.
 
 I stored the cards and card values in a dictionary called Cards. I stored the suits in a list called suits. In the beginning, I generate a generic deck of cards of thirteen values and four suits. I shuffle a list called mask in my function deal_cards to create a unique deck each time the code is run. To shuffle this list, I instantiate an object from python's random library because it's easy and convenient to. use. 
 
