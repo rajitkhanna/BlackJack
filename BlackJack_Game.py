@@ -197,15 +197,13 @@ if __name__ == '__main__':
                     elif j == len(player_cards) - 1:
                         print(" and the {0} of {1}.".format(player_cards[j][0], player_cards[j][1]))
                     else:
-                        print(", the {0} of {1},".format(player_cards[j][0], player_cards[i][1]), end = " ")
+                        print(", the {0} of {1},".format(player_cards[j][0], player_cards[i][1]), end = "")
 
                 # Check to see who has won
                 if dealer_total > player_total:
                     print("You lose :(.")
                 elif dealer_total == player_total:
                     print("On this rare occasion, you and the dealer have tied.")
-                elif player_total == 21:
-                    print("You have BLACKJACK!")
                 elif dealer_total == 21:
                     print("The Dealer has Blackjack. You lose :(.")
                 elif player_total > dealer_total:
