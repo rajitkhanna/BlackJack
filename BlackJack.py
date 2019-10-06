@@ -239,7 +239,7 @@ if __name__ == '__main__':
                 if dealer_total > player_total:
                     print("You lose :(.")
                 elif dealer_total == player_total:
-                    print("On this rare occasion, you and the dealer have tied.")
+                    print("You and the dealer have tied.")
                 elif dealer_total == 21:
                     print("The Dealer has Blackjack. You lose :(.")
                 elif player_total > dealer_total:
