@@ -92,8 +92,8 @@ def deal_cards():
                     print("Please enter a valid input.")
     
     elif player_cards[1][0] == "ACE": # The second card is an ACE
-        if check_total(Cards[player_cards[0][1]] + 11):
-            player_total = 1 + Cards[player_cards[0][1]]
+        if check_total(Cards[player_cards[0][0]] + 11):
+            player_total = 1 + Cards[player_cards[0][0]]
             print("You have {0} with the {1} of {2} and the {3} of {4}.".
         format(player_total, player_cards[0][0], player_cards[0][1], player_cards[1][0], player_cards[1][1]))
 
@@ -104,13 +104,13 @@ def deal_cards():
             validInput = False
             while not validInput:
                 print("Your two possible sums are {0} and {1}.".
-            format(Cards[player_cards[0][1]] + 1, Cards[player_cards[0][1]] + 11))
+            format(Cards[player_cards[0][0]] + 1, Cards[player_cards[0][0]] + 11))
                 answer = int(input("Please enter which one you would like: "))
-                if answer == Cards[player_cards[0][1]] + 1:
-                    player_total = Cards[player_cards[0][1]] + 1
+                if answer == Cards[player_cards[0][0]] + 1:
+                    player_total = Cards[player_cards[0][0]] + 1
                     validInput == True
-                elif answer == Cards[player_cards[0][1]] + 11:
-                    player_total = Cards[player_cards[0][1]] + 11
+                elif answer == Cards[player_cards[0][0]] + 11:
+                    player_total = Cards[player_cards[0][0]] + 11
                     validInput = True
                 else:
                     print("Please enter a valid input.")
@@ -135,11 +135,11 @@ def dealer_action(mask, dealer_cards, player_total):
         else:
             dealer_total =  Cards[dealer_cards[1][0]] + 11 
     elif dealer_cards[1][0] == "ACE": # The second card is an ACE
-        if check_total(Cards[dealer_cards[0][1]] + 11):
-            dealer_cards = 1 + Cards[dealer_cards[0][1]]
+        if check_total(Cards[dealer_cards[0][0]] + 11):
+            dealer_cards = 1 + Cards[dealer_cards[0][0]]
             
         else:
-            dealer_total = Cards[dealer_cards[0][1]] + 11
+            dealer_total = Cards[dealer_cards[0][0]] + 11
 
     else: ## gets the dealer_total
         dealer_total = Cards[dealer_cards[0][0]] + Cards[dealer_cards[1][0]]
