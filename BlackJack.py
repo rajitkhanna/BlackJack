@@ -62,7 +62,7 @@ def deal_cards():
             if answer == 2:
                 player_total = answer
                 validInput = True
-            elif answer == 12:
+            if answer == 12:
                 player_total = answer
                 validInput = True
             else:
@@ -73,6 +73,10 @@ def deal_cards():
             player_total = 1 + Cards[player_cards[1][0]]
             print("You have {0} with the {1} of {2} and the {3} of {4}.".
         format(player_total, player_cards[0][0], player_cards[0][1], player_cards[1][0], player_cards[1][1]))
+
+        elif Cards[player_cards[1][0]] + 11 == 21:
+            player_total = 21
+
         else:
             print("You have the {0} of {1} and the {2} of {3}.".
             format(player_cards[0][0], player_cards[0][1], player_cards[1][0], player_cards[1][1]))
@@ -85,7 +89,7 @@ def deal_cards():
                 if answer == Cards[player_cards[1][0]] + 1:
                     player_total = Cards[player_cards[1][0]] + 1
                     validInput == True
-                elif answer == Cards[player_cards[1][0]] + 11:
+                if answer == Cards[player_cards[1][0]] + 11:
                     player_total = Cards[player_cards[1][0]] + 11
                     validInput = True
                 else:
@@ -96,6 +100,9 @@ def deal_cards():
             player_total = 1 + Cards[player_cards[0][0]]
             print("You have {0} with the {1} of {2} and the {3} of {4}.".
         format(player_total, player_cards[0][0], player_cards[0][1], player_cards[1][0], player_cards[1][1]))
+
+        elif Cards[player_cards[0][0]] + 11 == 21:
+            player_total = 21
 
         else:
             print("You have the {0} of {1} and the {2} of {3}.".
@@ -109,7 +116,7 @@ def deal_cards():
                 if answer == Cards[player_cards[0][0]] + 1:
                     player_total = Cards[player_cards[0][0]] + 1
                     validInput == True
-                elif answer == Cards[player_cards[0][0]] + 11:
+                if answer == Cards[player_cards[0][0]] + 11:
                     player_total = Cards[player_cards[0][0]] + 11
                     validInput = True
                 else:
@@ -172,9 +179,10 @@ def player_action(mask, player_cards, player_total):
                         print("You now have {0} with the {1} of {2}".format(player_total, player_cards[j][0], player_cards[j][1]), end = "")
                     elif j == len(player_cards) - 1:
                         print(" and the {0} of {1}. ".format(player_cards[j][0], player_cards[j][1]))
+                    elif len(player_cards) >= 4 and j != 1:
+                        print(" the {0} of {1},".format(player_cards[j][0], player_cards[j][1]), end = "")
                     else:
-                        print(", the {0} of {1},".format(player_cards[j][0], player_cards[j][1]), end = "")
-                
+                        print(", the {0} of {1},".format(player_cards[j][0], player_cards[j][1],), end = "")
             elif answer == 'n':
                 validInput = True
                 return player_total
@@ -223,6 +231,8 @@ if __name__ == '__main__':
                         print("The dealer has {0} with the {1} of {2}".format(dealer_total, dealer_cards[i][0], dealer_cards[i][1]), end = "")
                     elif i == len(dealer_cards) - 1:
                         print(" and the {0} of {1}.".format(dealer_cards[i][0], dealer_cards[i][1]))
+                    elif len(dealer_cards) >= 4 and i != 1:
+                        print(" the {0} of {1},".format(dealer_cards[i][0], dealer_cards[i][1]), end = "")
                     else:
                         print(", the {0} of {1},".format(dealer_cards[i][0], dealer_cards[i][1]), end = "")
 
@@ -232,6 +242,8 @@ if __name__ == '__main__':
                         print("You have {0} with the {1} of {2}".format(player_total, player_cards[j][0], player_cards[j][1]), end = "")
                     elif j == len(player_cards) - 1:
                         print(" and the {0} of {1}.".format(player_cards[j][0], player_cards[j][1]))
+                    elif len(player_cards) >= 4 and j != 1:
+                        print(" the {0} of {1},".format(player_cards[j][0], player_cards[j][1]), end = "")
                     else:
                         print(", the {0} of {1},".format(player_cards[j][0], player_cards[i][1]), end = "")
 
