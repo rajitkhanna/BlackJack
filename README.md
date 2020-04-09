@@ -2,9 +2,9 @@
 Console-based BlackJack Card Game in Python. Oodles of Fun.
 
 If you already have python3 installed, run the file in your console with the command
-
+```
 python3 BlackJack.py
-
+```
 to experience this classic card game!
 
 To check what version of python is installed, type python into your command prompt.
